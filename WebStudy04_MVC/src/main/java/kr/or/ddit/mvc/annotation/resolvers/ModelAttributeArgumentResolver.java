@@ -26,14 +26,13 @@ public class ModelAttributeArgumentResolver implements HandlerMethodArgumentReso
 	@Override
 	public Object argumentResolve(Parameter parameter, HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
+		ModelAttribute annotation = parameter.getAnnotation(ModelAttribute.class);
 		Class<?> parameterType = parameter.getType();
+		Object parameterValue;
 		try {
-			Object parameterValue = parameterType.newInstance();
-			
-			ModelAttribute annotation = parameter.getAnnotation(ModelAttribute.class);
+			parameterValue = parameterType.newInstance();
 			String attrName = annotation.value();
 			req.setAttribute(attrName, parameterValue);
-			
 			
 			BeanUtils.populate(parameterValue, req.getParameterMap());
 			

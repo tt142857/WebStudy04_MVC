@@ -9,18 +9,18 @@ import java.lang.reflect.Method;
  */
 public class RequestMappingInfo {
 	private RequestMappingCondition mappingCondition;
-	private Object commandHandler; // 핸들러가 제각각이기 때문에 Object 타입임
+	private Object handler; // 핸들러가 제각각이기 때문에 Object 타입임
 	private Method handlerMethod;
 
 	public RequestMappingInfo(RequestMappingCondition mappingCondition, Object commandHandler, Method handlerMethod) {
 		this.mappingCondition = mappingCondition;
-		this.commandHandler = commandHandler;
+		this.handler = commandHandler;
 		this.handlerMethod = handlerMethod;
 	}
 
 	@Override
 	public String toString() {
-		return "핸들러 정보 [commandHandler=" + commandHandler + ", handlerMethod=" + handlerMethod + "]";
+		return "핸들러 정보 [commandHandler=" + handler + ", handlerMethod=" + handlerMethod + "]";
 	}
 
 	public RequestMappingCondition getMappingCondition() {
@@ -28,7 +28,7 @@ public class RequestMappingInfo {
 	}
 
 	public Object getHandler() {
-		return commandHandler;
+		return handler;
 	}
 
 	public Method getHandlerMethod() {

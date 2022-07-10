@@ -29,8 +29,12 @@ public class LoginProcessController {
 	}
 	
 	@RequestMapping(value="/login/loginProcess.do", method=RequestMethod.POST)
-	public String login(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
+	public String login(HttpServletRequest req, HttpSession session, HttpServletResponse resp) throws ServletException, IOException {
+		if(session.isNew()) {
+			resp.sendError(HttpServletResponse.SC_BAD_REQUEST);
+			return null;
+		}
+		
 		MemberVO inputData = new MemberVO();
 		inputData.setMemId(req.getParameter("memId"));
 		inputData.setMemPass(req.getParameter("memPass"));

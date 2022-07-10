@@ -20,8 +20,9 @@ public class RequestParamArgumentResolver implements HandlerMethodArgumentResolv
 	public boolean isSupported(Parameter parameter) {
 		RequestParam annotation = parameter.getAnnotation(RequestParam.class);
 		Class<?> parameterType = parameter.getType();
-		return annotation != null && (ClassUtils.isPrimitiveOrWrapper(parameterType)
-									 || String.class.equals(parameterType));
+		return annotation != null 
+				&& (ClassUtils.isPrimitiveOrWrapper(parameterType) 
+				|| String.class.equals(parameterType));
 	}
 
 	@Override
@@ -35,7 +36,7 @@ public class RequestParamArgumentResolver implements HandlerMethodArgumentResolv
 		
 		String requestParameter = req.getParameter(requestParameterName);
 		if(required && StringUtils.isBlank(requestParameter)) {
-			throw new BadRequestException(String.format("%s 이름을 가진 필수 파라미터 누락"), requestParameterName));
+			throw new BadRequestException(String.format("%s 이름을 가진 필수 파라미터 누락", requestParameterName));
 //			resp.sendError(400);
 //			return null;
 		} else if(StringUtils.isBlank(requestParameter)) {

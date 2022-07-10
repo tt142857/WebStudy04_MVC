@@ -26,7 +26,6 @@ public class LogoutController {
 		session.invalidate();
 		String message = URLEncoder.encode("로그아웃", "UTF-8");
 		
-		req.getSession().setAttribute("message", message);
-		return req.getContextPath();
+		return String.format("redirect:/?message=%s", message);
 	}
 }

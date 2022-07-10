@@ -19,9 +19,9 @@ public class ServletSpecArgumentResolver implements HandlerMethodArgumentResolve
 	public boolean isSupported(Parameter parameter) {
 		Class<?> parameterType= parameter.getType();
 		// 현재파라미터에서 req와 resp, session을 가져오고자 함
-		return HttpServletRequest.class.equals(parameterType) || 
-			   HttpServletResponse.class.equals(parameterType) || 
-			   HttpSession.class.equals(parameterType);
+		return HttpServletRequest.class.equals(parameterType) 
+			   || HttpServletResponse.class.equals(parameterType) 
+			   || HttpSession.class.equals(parameterType);
 	}
 
 	@Override
